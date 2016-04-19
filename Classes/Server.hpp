@@ -41,5 +41,6 @@ public:
 private:
     void loop();
     void sendCommand(ServerCommand command, nlohmann::json data);
+    
 };
 #endif /* Server_hpp */

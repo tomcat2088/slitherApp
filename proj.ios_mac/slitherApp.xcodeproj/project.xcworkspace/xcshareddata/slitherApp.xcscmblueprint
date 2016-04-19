@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "19EA9CB7FB7937D9863CA9A816FD750CED93B874",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "19EA9CB7FB7937D9863CA9A816FD750CED93B874" : 0,
+    "33423835B021EF0D85C3E0D211CDA5FCB7775AEB" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "56DBCFB7-3DDA-4E1C-88B4-80CB357F7C07",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "19EA9CB7FB7937D9863CA9A816FD750CED93B874" : "slitherApp\/",
+    "33423835B021EF0D85C3E0D211CDA5FCB7775AEB" : "slitherApp\/ThirdParty\/json\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "slitherApp",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "proj.ios_mac\/slitherApp.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/tomcat2088\/slitherApp.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "19EA9CB7FB7937D9863CA9A816FD750CED93B874"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nlohmann\/json.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "33423835B021EF0D85C3E0D211CDA5FCB7775AEB"
+    }
+  ]
+}
