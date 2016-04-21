@@ -1,9 +1,13 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
 
+#include "Server.hpp"
+
 USING_NS_CC;
 
 AppDelegate::AppDelegate() {
+    Server* server = new Server();
+    server->login();
 }
 
 AppDelegate::~AppDelegate() 

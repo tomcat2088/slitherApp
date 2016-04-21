@@ -62,6 +62,11 @@ void Slither::update(double deltaTime)
 }
 
 //Head
+Vec2 Slither::head()
+{
+    return points[points.size() - 1];
+}
+
 double Slither::updateHead(double deltaTime)
 {
     Vec2 newPoint = head();

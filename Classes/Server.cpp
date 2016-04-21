@@ -21,7 +21,14 @@ void Server::login()
         return;
     websocket = easywsclient::WebSocket::from_url("ws://localhost:8765");
     
-    std::thread websocketThread([this]{loop();});
+    if(websocket)
+    {
+        loopThread[0] = std::thread([this]{loop();});
+        
+        json loginData;
+        loginData["nickname"] = "ocean";
+        sendCommand(ServerCommandLogin, loginData);
+    }
 
 }
 
@@ -29,8 +36,17 @@ void Server::loop()
 {
     while (true) {
         websocket->poll();
-        websocket->dispatch([](std::string& message){
-            
+        websocket->dispatch([&](const std::string& message){
+            json obj = json::parse(message);
+            if((ServerCommand)obj["command"] == ServerCommandLogin)
+            {
+                if(loginUser != NULL)
+                    delete loginUser;
+                loginUser = new User();
+                loginUser->nickname = obj["data"]["nickname"];
+                loginUser->uid = obj["data"]["uid"];
+            }
+            processResponse(obj);
         });
     }
 }
@@ -50,4 +66,19 @@ void Server::sendCommand(ServerCommand command,json data)
     result["command"] = command;
     result["data"] = data;
     websocket->send(result.dump());
+}
+
+void Server::processResponse(json obj)
+{
+    int code = obj["code"];
+    if(code != 0)
+    {
+        return;
+    }
+    else
+    {
+        int command = obj["command"];
+        if(commandCallBack)
+            commandCallBack((ServerCommand)command,obj);
+    }
 }

@@ -30,17 +30,18 @@ struct User {
 class Server
 {
 public:
-    std::function<void(ServerCommand)> commandCallBack;
+    std::function<void(ServerCommand,nlohmann::json)> commandCallBack;
     bool avaliable;
     easywsclient::WebSocket::pointer websocket;
     User* loginUser;
     
     Server();
     void login();
-    
-private:
-    void loop();
     void sendCommand(ServerCommand command, nlohmann::json data);
     
+private:
+    std::thread loopThread[1];
+    void loop();
+    void processResponse(nlohmann::json obj);
 };
 #endif /* Server_hpp */
