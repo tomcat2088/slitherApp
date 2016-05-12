@@ -57,3 +57,37 @@ Vec2 Vec2::normal()
     double x = sqrt(1 - y * y);
     return Vec2(x,y);
 }
+
+Vec2 Vec2::rotate(Vec2 fromVec,Vec2 toVec)
+{
+    //fromVec x,y
+    //toVec x',y'
+    double sin = (fromVec.x * toVec.y - fromVec.y * toVec.x) / (fromVec.x * fromVec.x + fromVec.y * fromVec.y);
+    double cos = 0;
+    if(fromVec.x == 0)
+        cos = 0;
+    else
+        cos = toVec.x/fromVec.x + fromVec.y/fromVec.x * sin;
+    
+    double newX = x * cos - y * sin;
+    double newY = x * sin + y * cos;
+
+    return Vec2(newX,newY);
+}
+
+double Vec2::pointToLineDistance(Vec2 pt,Vec2 lineBegin,Vec2 lineEnd)
+{
+    pt.x -= lineBegin.x;
+    pt.y -= lineBegin.y;
+    lineEnd.x -= lineBegin.x;
+    lineEnd.y -= lineBegin.y;
+    lineBegin.x = 0;
+    lineBegin.y = 0;
+    
+    double len = lineEnd.len();
+    lineEnd = lineEnd.normalize();
+    pt = pt.rotate(lineEnd,Vec2(1,0));
+    if(pt.x >=0 && pt.x <= len)
+        return fabs(pt.y);
+    return -1;
+}

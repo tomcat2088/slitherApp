@@ -13,10 +13,10 @@ using namespace nlohmann;
 
 Slither::Slither():length(100),
 width(20),
-color(0xaaaa00),
-direction(Vec2(0,1))
+direction(Vec2(0,1)),
+_updateTime(0),
+_updateInterval(0)
 {
-    points.push_back(Vec2(2,2));
 }
 
 json Slither::serialize()
@@ -42,7 +42,8 @@ void Slither::deserialize(std::string dataStr)
     json obj = json::parse(dataStr);
     length = obj["length"];
     width = obj["width"];
-    color = obj["color"];
+    uid = obj["uid"];
+    nickname = obj["nickname"];
     
     points.clear();
     json pointsJson = obj["points"];
@@ -53,58 +54,51 @@ void Slither::deserialize(std::string dataStr)
         point.y = pointsJson[i]["y"];
         points.push_back(point);
     }
+    
+    _updateInterval = 1000 / speed;
 }
 
 void Slither::update(double deltaTime)
 {
-    double forwardDistance = updateHead(deltaTime);
-    updateTail(deltaTime,forwardDistance);
-}
-
-//Head
-Vec2 Slither::head()
-{
-    return points[points.size() - 1];
-}
-
-double Slither::updateHead(double deltaTime)
-{
-    Vec2 newPoint = head();
-    newPoint = newPoint.add(direction.mul(speed * deltaTime));
-    double forwardDistance = speed * deltaTime;
-    double len = points.size();
-    Vec2 oldVec = points[len - 1].sub(points[len - 2]).normalize();
-    if(direction.normalize().equal(oldVec))
+    _updateTime += deltaTime;
+    std::vector<Vec2> newPoints;
+    if(_updateTime >= _updateInterval)
     {
-        points[points.size() - 1] = newPoint;
+        Vec2 lastPt = points[points.size() - 1];
+        Vec2 newPt = lastPt.add(direction.mul(width));
+        points.erase(points.begin());
+        points.push_back(newPt);
+        _updateTime = 0;
     }
-    else
-    {
-        points.push_back(newPoint);
-    }
-    return forwardDistance;
 }
 
-//Tail
-void Slither::updateTail(double deltaTime,double forwardDistance)
+Slither* Slither::dieTest(Slither* slither)
 {
-    double trackedLen = 0;
-    for(int index = (int)points.size()-1;index >= 1;index--)
+    for(int i = 0;i < slither->points.size() - 1;i++)
     {
-        double segmentLen = points[index].sub(points[index-1]).len();
-        trackedLen+=segmentLen;
-        if(trackedLen >= length)
+        Vec2 dieTestHead = this->points[points.size() - 1];
+        Vec2 dieTestLineBegin = slither->points[i];
+        Vec2 dieTestLineEnd = slither->points[i + 1];
+        
+        double distance = dieTestHead.pointToLineDistance(dieTestHead,dieTestLineBegin,dieTestLineEnd);
+        if(distance >=0 && distance < slither->width / 2 + width / 2)
         {
-            //track finish
-            double forwardOnThisSeg =  trackedLen - length;
-            double overLen = forwardOnThisSeg;
-            Vec2 vec = points[index].sub(points[index-1]).normalize();
-            points[index-1] = points[index-1].add(vec.mul(overLen));
-            for(int j=0;j<index-1;j++)
-            {
-                points.erase(points.begin());
-            }
-            return;
+            //i die
+            return this;
         }
     }
+    
+    for(int i = 0;i < this->points.size() - 1;i++)
+    {
+        Vec2 dieTestHead = slither->points[slither->points.size() - 1];
+        Vec2 dieTestLineBegin = points[i];
+        Vec2 dieTestLineEnd = points[i + 1];
+        double distance = dieTestHead.pointToLineDistance(dieTestHead,dieTestLineBegin,dieTestLineEnd);
+        if(distance >=0 && distance < slither->width / 2 + width / 2)
+        {
+            //u die
+            return slither;
+        }
+    }
+    return NULL;
 }

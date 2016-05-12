@@ -15,10 +15,11 @@
 class Slither
 {
 public:
+    std::string nickname;
+    std::string uid;
     double length;
     double width;
     std::vector<Vec2> points;
-    int color;
     double speed;
     Vec2 direction;
     
@@ -26,9 +27,13 @@ public:
     
     nlohmann::json serialize();
     void deserialize(std::string dataStr);
+    
     void update(double deltaTime);
+    Slither* dieTest(Slither* slither);
     
 private:
+    double _updateTime;
+    double _updateInterval;
     double updateHead(double deltaTime);
     Vec2 head();
     void updateTail(double deltaTime,double forwardDistance);

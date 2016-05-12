@@ -25,5 +25,7 @@ public:
     Vec2 normalize();
     bool equal(Vec2 pt);
     Vec2 normal();
+    Vec2 rotate(Vec2 fromVec,Vec2 toVec);
+    double pointToLineDistance(Vec2 point,Vec2 lineBegin,Vec2 lineEnd);
 };
 #endif /* Vec2_hpp */
