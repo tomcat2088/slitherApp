@@ -14,11 +14,11 @@
 
 typedef enum {
     ServerCommandLogin = 10000,
-    ServerCommandSync = 10001,
-    ServerCommandMessage = 10002,
-    ServerCommandLogout = 10003,
-    ServerCommandMap = 10004,
-    ServerCommandCatchProp = 10005,
+    ServerCommandSyncSlither = 10001,
+    ServerCommandMap = 10002,
+    ServerCommandKill = 10003,
+    ServerCommandEatFood = 10004,
+    ServerCommandLogout = 10005,
 } ServerCommand;
 
 struct User {
@@ -26,6 +26,7 @@ struct User {
     std::string nickname;
 };
 
+class Slither;
 
 class Server
 {
@@ -33,15 +34,19 @@ public:
     std::function<void(ServerCommand,nlohmann::json)> commandCallBack;
     bool avaliable;
     easywsclient::WebSocket::pointer websocket;
-    User* loginUser;
     
     Server();
-    void login();
-    void sendCommand(ServerCommand command, nlohmann::json data);
+    void login(std::string nickname);
+    void loadMap();
+    void syncSlither(Slither* slither);
+    void eatFood(std::string foodUid);
+    void kill(std::string targetUid);
     
 private:
     std::thread loopThread[1];
     void loop();
     void processResponse(nlohmann::json obj);
+    void sendCommand(ServerCommand command, nlohmann::json data);
+    void sendCommand(ServerCommand command,std::string data);
 };
 #endif /* Server_hpp */

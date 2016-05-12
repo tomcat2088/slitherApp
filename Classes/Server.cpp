@@ -7,29 +7,51 @@
 //
 
 #include "Server.hpp"
+#include "Slither.hpp"
+#include "Logger.hpp"
 
 using namespace nlohmann;
 
-Server::Server():websocket(NULL),loginUser(NULL)
+Server::Server():websocket(NULL)
 {
 
 }
 
-void Server::login()
+void Server::login(std::string nickname)
 {
     if(websocket != NULL)
         return;
-    websocket = easywsclient::WebSocket::from_url("ws://localhost:8765");
+    websocket = easywsclient::WebSocket::from_url("ws://localhost:8081");
     
     if(websocket)
     {
+        logInfo("Connected to Server.Begin login...");
         loopThread[0] = std::thread([this]{loop();});
         
         json loginData;
-        loginData["nickname"] = "ocean";
+        loginData["nickname"] = nickname;
         sendCommand(ServerCommandLogin, loginData);
     }
+}
 
+void Server::loadMap()
+{
+    sendCommand(ServerCommandMap,std::string(""));
+}
+
+void Server::syncSlither(Slither* slither)
+{
+    sendCommand(ServerCommandSyncSlither,slither->serialize());
+}
+
+void Server::eatFood(std::string foodUid)
+{
+    sendCommand(ServerCommandEatFood, foodUid);
+}
+
+void Server::kill(std::string targetUid)
+{
+    sendCommand(ServerCommandKill, targetUid);
 }
 
 void Server::loop()
@@ -38,14 +60,6 @@ void Server::loop()
         websocket->poll();
         websocket->dispatch([&](const std::string& message){
             json obj = json::parse(message);
-            if((ServerCommand)obj["command"] == ServerCommandLogin)
-            {
-                if(loginUser != NULL)
-                    delete loginUser;
-                loginUser = new User();
-                loginUser->nickname = obj["data"]["nickname"];
-                loginUser->uid = obj["data"]["uid"];
-            }
             processResponse(obj);
         });
     }
@@ -56,13 +70,16 @@ void Server::sendCommand(ServerCommand command,json data)
     if(websocket == NULL)
         return;
     json result;
-    if(command != ServerCommandLogin)
-    {
-        if(loginUser != NULL)
-            result["uid"] = loginUser->uid;
-        else
-            return;
-    }
+    result["command"] = command;
+    result["data"] = data;
+    websocket->send(result.dump());
+}
+
+void Server::sendCommand(ServerCommand command,std::string data)
+{
+    if(websocket == NULL)
+        return;
+    json result;
     result["command"] = command;
     result["data"] = data;
     websocket->send(result.dump());

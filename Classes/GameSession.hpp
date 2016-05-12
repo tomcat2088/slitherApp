@@ -19,7 +19,6 @@ public:
     GameSession();
     Slither* slither;
     std::vector<Slither*> otherSlithers;
-    std::map<std::string,>
 private:
     Server* server;
     void processServerResponse(ServerCommand command,nlohmann::json obj);

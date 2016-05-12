@@ -11,17 +11,12 @@
 
 #include <stdio.h>
 
-typedef enum : NSUInteger {
-    SlitherMapPropTypeFood
-} SlitherMapPropType;
-
 typedef struct {
     double x;
     double y;
     double size;
     int color;
     double value;
-    SlitherMapPropType
-}SlitherMapProp;
+}SlitherFood;
 
 #endif /* SlitherMap_hpp */

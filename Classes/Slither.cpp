@@ -19,7 +19,7 @@ direction(Vec2(0,1))
     points.push_back(Vec2(2,2));
 }
 
-std::string Slither::serialize()
+json Slither::serialize()
 {
     json obj;
     obj["length"] = length;
@@ -34,7 +34,7 @@ std::string Slither::serialize()
         pointsJson.push_back(pointJson);
     }
     obj["points"] = pointsJson;
-    return std::string(obj.dump());
+    return obj;
 }
 
 void Slither::deserialize(std::string dataStr)

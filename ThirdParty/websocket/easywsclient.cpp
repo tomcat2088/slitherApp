@@ -478,6 +478,7 @@ easywsclient::WebSocket::pointer from_url(const std::string& url, bool useMask, 
             snprintf(line, 256, "Origin: %s\r\n", origin.c_str()); ::send(sockfd, line, strlen(line), 0);
         }
         snprintf(line, 256, "Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==\r\n"); ::send(sockfd, line, strlen(line), 0);
+        snprintf(line, 256, "Sec-WebSocket-Protocol: %s\r\n","slither"); ::send(sockfd, line, strlen(line), 0);
         snprintf(line, 256, "Sec-WebSocket-Version: 13\r\n"); ::send(sockfd, line, strlen(line), 0);
         snprintf(line, 256, "\r\n"); ::send(sockfd, line, strlen(line), 0);
         for (i = 0; i < 2 || (i < 255 && line[i-2] != '\r' && line[i-1] != '\n'); ++i) { if (recv(sockfd, line+i, 1, 0) == 0) { return NULL; } }

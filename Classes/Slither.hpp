@@ -10,6 +10,7 @@
 #define Slither_hpp
 
 #include "Vec2.hpp"
+#include "json.hpp"
 
 class Slither
 {
@@ -23,7 +24,7 @@ public:
     
     Slither();
     
-    std::string serialize();
+    nlohmann::json serialize();
     void deserialize(std::string dataStr);
     void update(double deltaTime);
     

@@ -55,6 +55,9 @@
 		8E1A3F941CC4FACD003281FE /* GameSession.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A3F921CC4FACD003281FE /* GameSession.cpp */; };
 		8E1A3F971CC4FB9D003281FE /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A3F951CC4FB9D003281FE /* Server.cpp */; };
 		8E1A3F9B1CC4FC52003281FE /* easywsclient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A3F991CC4FC52003281FE /* easywsclient.cpp */; };
+		8E3A9C0D1CE44D75008AA14F /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E3A9C0B1CE44D75008AA14F /* Logger.cpp */; };
+		8E3A9C111CE45102008AA14F /* Server_Tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E3A9C0F1CE45102008AA14F /* Server_Tests.cpp */; };
+		8E3A9C141CE45166008AA14F /* Tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E3A9C121CE45166008AA14F /* Tests.cpp */; };
 		8E3F557C1CC4E7B900EC809D /* Slither.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F557A1CC4E7B900EC809D /* Slither.cpp */; };
 		8E3F557F1CC4E7F600EC809D /* Vec2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F557D1CC4E7F600EC809D /* Vec2.cpp */; };
 		8ECAC4E81CC8FF1E00309422 /* SlitherMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8ECAC4E61CC8FF1E00309422 /* SlitherMap.cpp */; };
@@ -125,6 +128,12 @@
 		8E1A3F961CC4FB9D003281FE /* Server.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Server.hpp; sourceTree = "<group>"; };
 		8E1A3F991CC4FC52003281FE /* easywsclient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = easywsclient.cpp; sourceTree = "<group>"; };
 		8E1A3F9A1CC4FC52003281FE /* easywsclient.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = easywsclient.hpp; sourceTree = "<group>"; };
+		8E3A9C0B1CE44D75008AA14F /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Logger.cpp; sourceTree = "<group>"; };
+		8E3A9C0C1CE44D75008AA14F /* Logger.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
+		8E3A9C0F1CE45102008AA14F /* Server_Tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Server_Tests.cpp; sourceTree = "<group>"; };
+		8E3A9C101CE45102008AA14F /* Server_Tests.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Server_Tests.hpp; sourceTree = "<group>"; };
+		8E3A9C121CE45166008AA14F /* Tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tests.cpp; sourceTree = "<group>"; };
+		8E3A9C131CE45166008AA14F /* Tests.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tests.hpp; sourceTree = "<group>"; };
 		8E3F557A1CC4E7B900EC809D /* Slither.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Slither.cpp; sourceTree = "<group>"; };
 		8E3F557B1CC4E7B900EC809D /* Slither.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Slither.hpp; sourceTree = "<group>"; };
 		8E3F557D1CC4E7F600EC809D /* Vec2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vec2.cpp; sourceTree = "<group>"; };
@@ -262,6 +271,8 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8E3A9C0E1CE450EE008AA14F /* Tests */,
+				8E3A9C0A1CE44D65008AA14F /* Utils */,
 				8E3F55801CC4EB7500EC809D /* ThirdParty */,
 				8E3F55791CC4E78C00EC809D /* Game */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
@@ -327,6 +338,26 @@
 				8E1A3F9A1CC4FC52003281FE /* easywsclient.hpp */,
 			);
 			path = websocket;
+			sourceTree = "<group>";
+		};
+		8E3A9C0A1CE44D65008AA14F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8E3A9C0B1CE44D75008AA14F /* Logger.cpp */,
+				8E3A9C0C1CE44D75008AA14F /* Logger.hpp */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		8E3A9C0E1CE450EE008AA14F /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8E3A9C0F1CE45102008AA14F /* Server_Tests.cpp */,
+				8E3A9C101CE45102008AA14F /* Server_Tests.hpp */,
+				8E3A9C121CE45166008AA14F /* Tests.cpp */,
+				8E3A9C131CE45166008AA14F /* Tests.hpp */,
+			);
+			name = Tests;
 			sourceTree = "<group>";
 		};
 		8E3F55791CC4E78C00EC809D /* Game */ = {
@@ -491,13 +522,16 @@
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				8E3F557C1CC4E7B900EC809D /* Slither.cpp in Sources */,
 				8E1A3F9B1CC4FC52003281FE /* easywsclient.cpp in Sources */,
+				8E3A9C141CE45166008AA14F /* Tests.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				8E1A3F971CC4FB9D003281FE /* Server.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				8E3A9C0D1CE44D75008AA14F /* Logger.cpp in Sources */,
 				8ECAC4E81CC8FF1E00309422 /* SlitherMap.cpp in Sources */,
 				8E3F557F1CC4E7F600EC809D /* Vec2.cpp in Sources */,
 				8E1A3F941CC4FACD003281FE /* GameSession.cpp in Sources */,
+				8E3A9C111CE45102008AA14F /* Server_Tests.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
