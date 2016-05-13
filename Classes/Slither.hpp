@@ -9,9 +9,10 @@
 #ifndef Slither_hpp
 #define Slither_hpp
 
-#include "Vec2.hpp"
+#include "Vector2.hpp"
 #include "json.hpp"
 
+class SlitherRender;
 class Slither
 {
 public:
@@ -19,9 +20,11 @@ public:
     std::string uid;
     double length;
     double width;
-    std::vector<Vec2> points;
+    std::vector<Vector2> points;
     double speed;
-    Vec2 direction;
+    Vector2 direction;
+    
+    double updateInterval;
     
     Slither();
     
@@ -30,12 +33,14 @@ public:
     
     void update(double deltaTime);
     Slither* dieTest(Slither* slither);
+    SlitherRender* render(cocos2d::Layer* layer);
+    
     
 private:
     double _updateTime;
-    double _updateInterval;
+    SlitherRender* _render;
     double updateHead(double deltaTime);
-    Vec2 head();
+    Vector2 head();
     void updateTail(double deltaTime,double forwardDistance);
 };
 #endif /* Slither_hpp */

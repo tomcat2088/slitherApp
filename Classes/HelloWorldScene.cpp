@@ -97,7 +97,7 @@ bool HelloWorld::init()
 
 void HelloWorld::newSession()
 {
-    session = new GameSession();
+    session = new GameSession(this);
 }
 
 void HelloWorld::update(float deltaTime)

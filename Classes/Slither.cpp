@@ -8,15 +8,19 @@
 
 #include "Slither.hpp"
 #include "json.hpp"
+#include "SlitherRender.hpp"
 
 using namespace nlohmann;
 
 Slither::Slither():length(100),
 width(20),
-direction(Vec2(0,1)),
+direction(Vector2(0.2,0.3)),
 _updateTime(0),
-_updateInterval(0)
+updateInterval(0),
+speed(1),
+_render(NULL)
 {
+    
 }
 
 json Slither::serialize()
@@ -47,26 +51,31 @@ void Slither::deserialize(json obj)
     json pointsJson = obj["points"];
     for(int i=0;i<pointsJson.size();i++)
     {
-        Vec2 point;
+        Vector2 point;
         point.x = pointsJson[i]["x"];
         point.y = pointsJson[i]["y"];
         points.push_back(point);
     }
     
-    _updateInterval = 1000 / speed;
+    updateInterval = 1 / speed;
 }
 
 void Slither::update(double deltaTime)
 {
     _updateTime += deltaTime;
-    std::vector<Vec2> newPoints;
-    if(_updateTime >= _updateInterval)
+    std::vector<Vector2> newPoints;
+    if(_updateTime >= updateInterval)
     {
-        Vec2 lastPt = points[points.size() - 1];
-        Vec2 newPt = lastPt.add(direction.mul(width));
+        Vector2 lastPt = points[points.size() - 1];
+        Vector2 newPt = lastPt.add(direction.mul(width));
         points.erase(points.begin());
         points.push_back(newPt);
         _updateTime = 0;
+        
+        if(_render != NULL)
+        {
+            _render->update(deltaTime);
+        }
     }
 }
 
@@ -74,9 +83,9 @@ Slither* Slither::dieTest(Slither* slither)
 {
     for(int i = 0;i < slither->points.size() - 1;i++)
     {
-        Vec2 dieTestHead = this->points[points.size() - 1];
-        Vec2 dieTestLineBegin = slither->points[i];
-        Vec2 dieTestLineEnd = slither->points[i + 1];
+        Vector2 dieTestHead = this->points[points.size() - 1];
+        Vector2 dieTestLineBegin = slither->points[i];
+        Vector2 dieTestLineEnd = slither->points[i + 1];
         
         double distance = dieTestHead.pointToLineDistance(dieTestHead,dieTestLineBegin,dieTestLineEnd);
         if(distance >=0 && distance < slither->width / 2 + width / 2)
@@ -88,9 +97,9 @@ Slither* Slither::dieTest(Slither* slither)
     
     for(int i = 0;i < this->points.size() - 1;i++)
     {
-        Vec2 dieTestHead = slither->points[slither->points.size() - 1];
-        Vec2 dieTestLineBegin = points[i];
-        Vec2 dieTestLineEnd = points[i + 1];
+        Vector2 dieTestHead = slither->points[slither->points.size() - 1];
+        Vector2 dieTestLineBegin = points[i];
+        Vector2 dieTestLineEnd = points[i + 1];
         double distance = dieTestHead.pointToLineDistance(dieTestHead,dieTestLineBegin,dieTestLineEnd);
         if(distance >=0 && distance < slither->width / 2 + width / 2)
         {
@@ -99,4 +108,14 @@ Slither* Slither::dieTest(Slither* slither)
         }
     }
     return NULL;
+}
+
+SlitherRender* Slither::render(cocos2d::Layer* layer)
+{
+    if(_render == NULL)
+    {
+        _render = new SlitherRender(this);
+        _render->attachTo(layer);
+    }
+    return _render;
 }

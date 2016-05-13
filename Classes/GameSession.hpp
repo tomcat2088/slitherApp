@@ -16,7 +16,7 @@
 class GameSession
 {
 public:
-    GameSession();
+    GameSession(cocos2d::Layer* gameLayer);
     ~GameSession();
     Slither* slither;
     std::vector<Slither*> otherSlithers;
@@ -24,6 +24,7 @@ public:
     void update(double deltaTime);
 private:
     Server* server;
+    cocos2d::Layer* _gameLayer;
     void processServerResponse(ServerCommand command,nlohmann::json obj);
 };
 #endif /* GameSession_hpp */

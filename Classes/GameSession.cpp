@@ -12,8 +12,9 @@
 using namespace nlohmann;
 using namespace cocos2d;
 
-GameSession::GameSession():slither(NULL)
+GameSession::GameSession(cocos2d::Layer* gameLayer):slither(NULL)
 {
+    _gameLayer = gameLayer;
     server = new Server();
     server->commandCallBack = [&](ServerCommand command,json obj){
         processServerResponse(command,obj);
@@ -40,6 +41,7 @@ void GameSession::processServerResponse(ServerCommand command,nlohmann::json obj
     if(command == ServerCommandLogin)
     {
         slither = new Slither();
+        slither->render(_gameLayer);
         slither->deserialize(obj);
     }
 }
