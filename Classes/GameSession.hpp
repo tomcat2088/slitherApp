@@ -17,8 +17,11 @@ class GameSession
 {
 public:
     GameSession();
+    ~GameSession();
     Slither* slither;
     std::vector<Slither*> otherSlithers;
+    
+    void update(double deltaTime);
 private:
     Server* server;
     void processServerResponse(ServerCommand command,nlohmann::json obj);

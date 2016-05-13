@@ -24,7 +24,6 @@ json Slither::serialize()
     json obj;
     obj["length"] = length;
     obj["width"] = width;
-    obj["color"] = color;
     json pointsJson;
     for(int i=0;i<points.size();i++)
     {
@@ -37,9 +36,8 @@ json Slither::serialize()
     return obj;
 }
 
-void Slither::deserialize(std::string dataStr)
+void Slither::deserialize(json obj)
 {
-    json obj = json::parse(dataStr);
     length = obj["length"];
     width = obj["width"];
     uid = obj["uid"];

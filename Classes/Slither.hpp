@@ -26,7 +26,7 @@ public:
     Slither();
     
     nlohmann::json serialize();
-    void deserialize(std::string dataStr);
+    void deserialize(nlohmann::json obj);
     
     void update(double deltaTime);
     Slither* dieTest(Slither* slither);

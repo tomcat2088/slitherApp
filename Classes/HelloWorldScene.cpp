@@ -2,7 +2,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 
-#include "Slither.hpp"
+#include "GameSession.hpp"
 
 USING_NS_CC;
 
@@ -19,8 +19,6 @@ Scene* HelloWorld::createScene()
     // add layer as a child to scene
     scene->addChild(layer);
 
-    Slither slither;
-    std::string str = slither.serialize();
     // return the scene
     return scene;
 }
@@ -92,5 +90,20 @@ bool HelloWorld::init()
 
     addChild(rootNode);
 
+    newSession();
+    schedule(CC_SCHEDULE_SELECTOR(HelloWorld::update));
     return true;
+}
+
+void HelloWorld::newSession()
+{
+    session = new GameSession();
+}
+
+void HelloWorld::update(float deltaTime)
+{
+    if(session != NULL)
+    {
+        session->update(deltaTime);
+    }
 }

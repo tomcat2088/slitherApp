@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 
+class GameSession;
 class HelloWorld : public cocos2d::Layer
 {
 public:
@@ -14,6 +15,10 @@ public:
 
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+    
+    GameSession* session;
+    void newSession();
+    void update(float deltaTime);
 };
 
 #endif // __HELLOWORLD_SCENE_H__

@@ -11,5 +11,5 @@
 
 void runTests()
 {
-    new ServerTests();
+    //new ServerTests();
 }

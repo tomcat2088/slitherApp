@@ -36,6 +36,8 @@ public:
     easywsclient::WebSocket::pointer websocket;
     
     Server();
+    ~Server();
+    void close();
     void login(std::string nickname);
     void loadMap();
     void syncSlither(Slither* slither);

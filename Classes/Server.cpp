@@ -17,6 +17,14 @@ Server::Server():websocket(NULL)
 
 }
 
+Server::~Server()
+{
+    if(websocket)
+    {
+        websocket->close();
+    }
+}
+
 void Server::login(std::string nickname)
 {
     if(websocket != NULL)
@@ -96,6 +104,6 @@ void Server::processResponse(json obj)
     {
         int command = obj["command"];
         if(commandCallBack)
-            commandCallBack((ServerCommand)command,obj);
+            commandCallBack((ServerCommand)command,obj["data"]);
     }
 }
