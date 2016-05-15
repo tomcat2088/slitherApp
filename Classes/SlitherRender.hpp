@@ -16,6 +16,7 @@ public:
     SlitherRender(Slither* slither);
     ~SlitherRender();
     
+    void syncNodes();
     void update(double deltaTime);
     void attachTo(cocos2d::Layer* layer);
 private:
@@ -25,7 +26,6 @@ private:
     cocos2d::Layer* _attachedLayer;
     cocos2d::Vector<cocos2d::Node*> _nodes;
     
-    void syncNodes();
     void detach();
 };
 #endif /* SlitherRender_hpp */

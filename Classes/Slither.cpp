@@ -74,8 +74,13 @@ void Slither::update(double deltaTime)
         
         if(_render != NULL)
         {
-            _render->update(deltaTime);
+            _render->syncNodes();
         }
+    }
+    
+    if(_render != NULL)
+    {
+        _render->update(deltaTime);
     }
 }
 

@@ -10,6 +10,8 @@
 #include "Slither.hpp"
 #include "Vector2.hpp"
 
+#include "SlitherRenderUnit.hpp"
+
 using namespace cocos2d;
 
 SlitherRender::SlitherRender(Slither* slither)
@@ -28,14 +30,14 @@ void SlitherRender::syncNodes()
     {
         for(int i=(int)_slither->points.size() - 1;i >= 0;i--)
         {
-            Node* node = NULL;
+            SlitherRenderUnit* node = NULL;
             if(i >= 0 && i < _nodes.size())
             {
-                node = _nodes.at(i);
+                node = dynamic_cast<SlitherRenderUnit*>(_nodes.at(i));
             }
             else
             {
-                node = LayerColor::create(Color4B(255, 0, 0, 255), _slither->width/2, _slither->width/2);
+                node = dynamic_cast<SlitherRenderUnit*>(SlitherRenderUnit::create());
                 _nodes.insert(0, node);
             }
             
@@ -45,14 +47,18 @@ void SlitherRender::syncNodes()
             }
             
             Vector2 pos = _slither->points[i];
-            node->setPosition(Vec2(pos.x, pos.y));
+            node->moveTo(Vec2(pos.x, pos.y),_slither->updateInterval);
         }
     }
 }
 
 void SlitherRender::update(double deltaTime)
 {
-    syncNodes();
+    for(int i=0;i<_nodes.size();i++)
+    {
+        SlitherRenderUnit* node = dynamic_cast<SlitherRenderUnit*>(_nodes.at(i));
+        node->update(deltaTime);
+    }
 }
 
 void SlitherRender::attachTo(cocos2d::Layer* layer)
