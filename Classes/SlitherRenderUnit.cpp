@@ -33,9 +33,10 @@ void SlitherRenderUnit::update(double deltaTime)
     }
     else
     {
-        double percent = _durationLeft / _duration;
+        double percent = 1 - _durationLeft / _duration;
         Vector2 vec(_targetPos.x,_targetPos.y);
         vec = vec.sub(Vector2(_oldPos.x,_oldPos.y));
-        Vec2(<#const cocos2d::Vec2 &p1#>, <#const cocos2d::Vec2 &p2#>)
+        vec = vec.mul(percent).add(Vector2(_oldPos.x,_oldPos.y));
+        setPosition(Vec2(vec.x, vec.y));
     }
 }

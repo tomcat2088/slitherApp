@@ -85,10 +85,6 @@ bool HelloWorld::init()
     {
         return false;
     }
-    
-    auto rootNode = CSLoader::createNode("MainScene.csb");
-
-    addChild(rootNode);
 
     newSession();
     schedule(CC_SCHEDULE_SELECTOR(HelloWorld::update));
