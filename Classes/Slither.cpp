@@ -13,7 +13,7 @@
 using namespace nlohmann;
 
 Slither::Slither():length(100),
-width(20),
+width(60),
 direction(Vector2(0.2,0.3)),
 _updateTime(0),
 updateInterval(0),
@@ -57,7 +57,7 @@ void Slither::deserialize(json obj)
         points.push_back(point);
     }
     
-    updateInterval = 1 / speed;
+    updateInterval = 0.2;
 }
 
 void Slither::update(double deltaTime)
@@ -81,6 +81,17 @@ void Slither::update(double deltaTime)
     if(_render != NULL)
     {
         _render->update(deltaTime);
+    }
+}
+
+cocos2d::Vec2 Slither::headPosition()
+{
+    cocos2d::Node* headNode = _render->headNode();
+    if(headNode)
+        return headNode->getPosition();
+    else
+    {
+        return cocos2d::Vec2(0,0);
     }
 }
 

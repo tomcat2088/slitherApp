@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 
 class GameSession;
+class SlitherTouchController;
 class HelloWorld : public cocos2d::Layer
 {
 public:
@@ -17,6 +18,8 @@ public:
     CREATE_FUNC(HelloWorld);
     
     GameSession* session;
+    cocos2d::Camera* camera;
+    SlitherTouchController* touchController;
     void newSession();
     void update(float deltaTime);
 };

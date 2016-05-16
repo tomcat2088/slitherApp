@@ -27,7 +27,7 @@ void SlitherRenderUnit::moveTo(cocos2d::Vec2 pos,double duration)
 void SlitherRenderUnit::update(double deltaTime)
 {
     _durationLeft -= deltaTime;
-    if(_duration <= 0)
+    if(_durationLeft <= 0)
     {
         setPosition(_targetPos);
     }

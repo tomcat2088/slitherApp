@@ -69,6 +69,13 @@ void SlitherRender::attachTo(cocos2d::Layer* layer)
     _attachedLayer = layer;
 }
 
+cocos2d::Node* SlitherRender::headNode()
+{
+    if(_nodes.size() >= 1)
+        return _nodes.at(_nodes.size() - 1);
+    return NULL;
+}
+
 void SlitherRender::detach()
 {
     if(_isAttached == false)

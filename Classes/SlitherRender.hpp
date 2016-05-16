@@ -19,6 +19,7 @@ public:
     void syncNodes();
     void update(double deltaTime);
     void attachTo(cocos2d::Layer* layer);
+    cocos2d::Node* headNode();
 private:
     Slither* _slither;
     bool _isAttached;

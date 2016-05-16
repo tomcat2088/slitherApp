@@ -12,9 +12,10 @@
 using namespace nlohmann;
 using namespace cocos2d;
 
-GameSession::GameSession(cocos2d::Layer* gameLayer):slither(NULL)
+GameSession::GameSession(cocos2d::Layer* gameLayer,cocos2d::Camera* camera):slither(NULL)
 {
     _gameLayer = gameLayer;
+    _camera = camera;
     server = new Server();
     server->commandCallBack = [&](ServerCommand command,json obj){
         processServerResponse(command,obj);
@@ -33,6 +34,8 @@ void GameSession::update(double deltaTime)
     if(slither)
     {
         slither->update(deltaTime);
+        cocos2d::Vec2 pos = slither->headPosition();
+        _camera->setPosition(pos);
     }
 }
 

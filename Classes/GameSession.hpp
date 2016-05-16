@@ -16,7 +16,7 @@
 class GameSession
 {
 public:
-    GameSession(cocos2d::Layer* gameLayer);
+    GameSession(cocos2d::Layer* gameLayer,cocos2d::Camera* camera);
     ~GameSession();
     Slither* slither;
     std::vector<Slither*> otherSlithers;
@@ -25,6 +25,7 @@ public:
 private:
     Server* server;
     cocos2d::Layer* _gameLayer;
+    cocos2d::Camera* _camera;
     void processServerResponse(ServerCommand command,nlohmann::json obj);
 };
 #endif /* GameSession_hpp */

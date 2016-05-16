@@ -35,6 +35,7 @@ public:
     Slither* dieTest(Slither* slither);
     SlitherRender* render(cocos2d::Layer* layer);
     
+    cocos2d::Vec2 headPosition();
     
 private:
     double _updateTime;
