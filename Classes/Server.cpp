@@ -29,7 +29,7 @@ void Server::login(std::string nickname)
 {
     if(websocket != NULL)
         return;
-    websocket = easywsclient::WebSocket::from_url("ws://localhost:8081");
+    websocket = easywsclient::WebSocket::from_url("ws://192.168.1.103:8081");
     
     if(websocket)
     {

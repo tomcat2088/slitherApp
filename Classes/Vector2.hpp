@@ -27,5 +27,6 @@ public:
     Vector2 normal();
     Vector2 rotate(Vector2 fromVec,Vector2 toVec);
     double pointToLineDistance(Vector2 point,Vector2 lineBegin,Vector2 lineEnd);
+    static double directionToDegree(Vector2 direction);
 };
 #endif /* Vector2_hpp */

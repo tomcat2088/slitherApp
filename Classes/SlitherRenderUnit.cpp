@@ -13,7 +13,9 @@ using namespace cocos2d;
 
 bool SlitherRenderUnit::init()
 {
-    return this->initWithColor(Color4B(255, 0, 0, 255), 20, 20);
+    bool res =  this->cocos2d::Sprite::initWithFile("unit2.png");
+    this->setAnchorPoint(Vec2(0.5, 0.5));
+    return res;
 }
 
 void SlitherRenderUnit::moveTo(cocos2d::Vec2 pos,double duration)

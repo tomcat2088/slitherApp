@@ -16,7 +16,6 @@ void SlitherTouchController::touchBegin(cocos2d::Vec2 point)
 void SlitherTouchController::touchMove(cocos2d::Vec2 point)
 {
     direction = Vector2(point.x,point.y).sub(Vector2(_beginTouchPoint.x,_beginTouchPoint.y)).normalize();
-    _beginTouchPoint = point;
 }
 
 void SlitherTouchController::touchEnd(cocos2d::Vec2 point)

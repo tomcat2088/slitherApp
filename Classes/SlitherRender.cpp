@@ -30,6 +30,7 @@ void SlitherRender::syncNodes()
     {
         for(int i=(int)_slither->points.size() - 1;i >= 0;i--)
         {
+            Vector2 pos = _slither->points[i];
             SlitherRenderUnit* node = NULL;
             if(i >= 0 && i < _nodes.size())
             {
@@ -38,6 +39,8 @@ void SlitherRender::syncNodes()
             else
             {
                 node = dynamic_cast<SlitherRenderUnit*>(SlitherRenderUnit::create());
+                node->setContentSize(cocos2d::Size(_slither->width,_slither->width));
+                node->setPosition(Vec2(pos.x, pos.y));
                 _nodes.insert(0, node);
             }
             
@@ -45,8 +48,6 @@ void SlitherRender::syncNodes()
             {
                 _attachedLayer->addChild(node);
             }
-            
-            Vector2 pos = _slither->points[i];
             node->moveTo(Vec2(pos.x, pos.y),_slither->updateInterval);
         }
     }
@@ -54,10 +55,19 @@ void SlitherRender::syncNodes()
 
 void SlitherRender::update(double deltaTime)
 {
-    for(int i=0;i<_nodes.size();i++)
+    for(int i= 0;i < _nodes.size();i++)
     {
         SlitherRenderUnit* node = dynamic_cast<SlitherRenderUnit*>(_nodes.at(i));
         node->update(deltaTime);
+        
+        if(i < _nodes.size() - 1)
+        {
+            Vec2 pt1 = _nodes.at(i + 1)->getPosition();
+            Vec2 pt2 = _nodes.at(i)->getPosition();
+            Vector2 direciton = Vector2(pt1.x,pt1.y).sub(Vector2(pt2.x,pt2.y));
+            node->setRotation(Vector2::directionToDegree(direciton));
+        }
+        _nodes.at(_nodes.size() - 1)->setRotation(Vector2::directionToDegree(_slither->direction));
     }
 }
 

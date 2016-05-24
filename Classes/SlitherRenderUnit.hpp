@@ -10,7 +10,7 @@
 #define SlitherRenderUnit_hpp
 
 #include <stdio.h>
-class SlitherRenderUnit : public cocos2d::LayerColor
+class SlitherRenderUnit : public cocos2d::Sprite
 {
 public:
     virtual bool init();

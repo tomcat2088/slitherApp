@@ -91,3 +91,34 @@ double Vector2::pointToLineDistance(Vector2 pt,Vector2 lineBegin,Vector2 lineEnd
         return fabs(pt.y);
     return -1;
 }
+
+double Vector2::directionToDegree(Vector2 direction)
+{
+    double atan = direction.y / direction.x;
+    double degree = atanf(atan)/3.14 * 180;
+    double x = direction.x;
+    double y = direction.y;
+    if(x > 0)
+    {
+        if(y <= 0)
+        {
+            degree = -degree;
+        }
+        else
+        {
+            degree = 360 - degree;
+        }
+    }
+    else
+    {
+        if(y <= 0)
+        {
+            degree = 180 - degree;
+        }
+        else
+        {
+            degree = 180 - degree;
+        }
+    }
+    return degree;
+}
