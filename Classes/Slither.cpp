@@ -14,11 +14,12 @@ using namespace nlohmann;
 
 Slither::Slither():length(100),
 width(60),
-direction(Vector2(0.2,0.3)),
+direction(Vector2(0,1)),
 _updateTime(0),
 updateInterval(0),
 speed(1),
-_render(NULL)
+_render(NULL),
+rotateDirection(0)
 {
     
 }
@@ -82,6 +83,8 @@ void Slither::update(double deltaTime)
     {
         _render->update(deltaTime);
     }
+    
+    direction.rotateWithDegree(rotateDirection);
 }
 
 cocos2d::Vec2 Slither::headPosition()

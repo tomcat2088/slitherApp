@@ -51,13 +51,17 @@ bool HelloWorld::init()
         touchController->touchMove(locationInNode);
         if(session->slither)
         {
-            session->slither->direction = touchController->direction;
+            session->slither->rotateDirection = touchController->rotateDirection;
         }
     };
     
     eventListener->onTouchEnded = [&](Touch* touch, Event* event){
         Point locationInNode = this->convertToNodeSpace(touch->getLocation());
         touchController->touchEnd(locationInNode);
+        if(session->slither)
+        {
+            session->slither->rotateDirection = touchController->rotateDirection;
+        }
     };
     
     

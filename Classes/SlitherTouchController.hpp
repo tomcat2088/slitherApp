@@ -19,7 +19,7 @@ public:
     void touchBegin(cocos2d::Vec2 point);
     void touchMove(cocos2d::Vec2 point);
     void touchEnd(cocos2d::Vec2 point);
-    
+    int rotateDirection;
 private:
     cocos2d::Vec2 _beginTouchPoint;
 };

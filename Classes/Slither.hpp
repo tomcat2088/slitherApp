@@ -24,6 +24,8 @@ public:
     double speed;
     Vector2 direction;
     
+    int rotateDirection;
+    
     double updateInterval;
     
     Slither();

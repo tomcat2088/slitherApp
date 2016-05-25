@@ -10,15 +10,20 @@
 void SlitherTouchController::touchBegin(cocos2d::Vec2 point)
 {
     _beginTouchPoint = point;
-    direction = Vector2(0,0);
+    rotateDirection = 0;
 }
 
 void SlitherTouchController::touchMove(cocos2d::Vec2 point)
 {
-    direction = Vector2(point.x,point.y).sub(Vector2(_beginTouchPoint.x,_beginTouchPoint.y)).normalize();
+    if(point.x < _beginTouchPoint.x)
+        rotateDirection = 1;
+    else if(point.x > _beginTouchPoint.x)
+      rotateDirection = -1;
+    else
+        rotateDirection = 0;
 }
 
 void SlitherTouchController::touchEnd(cocos2d::Vec2 point)
 {
-    
+    rotateDirection = 0;
 }

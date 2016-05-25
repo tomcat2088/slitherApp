@@ -75,6 +75,18 @@ Vector2 Vector2::rotate(Vector2 fromVec,Vector2 toVec)
     return Vector2(newX,newY);
 }
 
+void Vector2::rotateWithDegree(double degree)
+{
+    double oldX = x;
+    double oldY = y;
+    double cos = cosf(degree / 180 * M_PI);
+    double sin = sinf(degree / 180 * M_PI);
+    double newX = oldX * cos - oldY * sin;
+    double newY = oldX * sin + oldY * cos;
+    x = newX;
+    y = newY;
+}
+
 double Vector2::pointToLineDistance(Vector2 pt,Vector2 lineBegin,Vector2 lineEnd)
 {
     pt.x -= lineBegin.x;
