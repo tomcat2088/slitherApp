@@ -26,6 +26,15 @@ void SlitherRenderUnit::moveTo(cocos2d::Vec2 pos,double duration)
     _durationLeft = duration;
 }
 
+void SlitherRenderUnit::setOriginPosition(cocos2d::Vec2 pos)
+{
+    setPosition(pos);
+    _oldPos = pos;
+    _targetPos = pos;
+    _duration = 0;
+    _durationLeft = 0;
+}
+
 void SlitherRenderUnit::update(double deltaTime)
 {
     _durationLeft -= deltaTime;

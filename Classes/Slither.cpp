@@ -12,16 +12,19 @@
 
 using namespace nlohmann;
 
-Slither::Slither():length(100),
-width(60),
+Slither::Slither():length(3),
+width(30),
 direction(Vector2(0,1)),
 _updateTime(0),
 updateInterval(0),
-speed(1),
+speed(30),
 _render(NULL),
 rotateDirection(0)
 {
-    
+    for(int i=length - 1; i>= 0 ;i--)
+    {
+        points.push_back(Vector2(0, 0 - i * width));
+    }
 }
 
 json Slither::serialize()

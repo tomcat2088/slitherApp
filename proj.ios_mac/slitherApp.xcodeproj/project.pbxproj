@@ -64,6 +64,7 @@
 		8E7F37891CE6248800EF1B83 /* SlitherRenderUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F37871CE6248800EF1B83 /* SlitherRenderUnit.cpp */; };
 		8ECAC4E81CC8FF1E00309422 /* SlitherMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8ECAC4E61CC8FF1E00309422 /* SlitherMap.cpp */; };
 		8ED2729F1CEA0398008B4695 /* SlitherTouchController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2729D1CEA0398008B4695 /* SlitherTouchController.cpp */; };
+		8EDEC7671CFDCDEA008F3A79 /* LocalServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EDEC7651CFDCDEA008F3A79 /* LocalServer.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -149,6 +150,9 @@
 		8ECAC4E71CC8FF1E00309422 /* SlitherMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SlitherMap.hpp; sourceTree = "<group>"; };
 		8ED2729D1CEA0398008B4695 /* SlitherTouchController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SlitherTouchController.cpp; sourceTree = "<group>"; };
 		8ED2729E1CEA0398008B4695 /* SlitherTouchController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SlitherTouchController.hpp; sourceTree = "<group>"; };
+		8EDEC7651CFDCDEA008F3A79 /* LocalServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalServer.cpp; sourceTree = "<group>"; };
+		8EDEC7661CFDCDEA008F3A79 /* LocalServer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LocalServer.hpp; sourceTree = "<group>"; };
+		8EDEC7681CFDCE08008F3A79 /* ServerCommands.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServerCommands.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -384,6 +388,9 @@
 				8E1A3F931CC4FACD003281FE /* GameSession.hpp */,
 				8ECAC4E61CC8FF1E00309422 /* SlitherMap.cpp */,
 				8ECAC4E71CC8FF1E00309422 /* SlitherMap.hpp */,
+				8EDEC7651CFDCDEA008F3A79 /* LocalServer.cpp */,
+				8EDEC7661CFDCDEA008F3A79 /* LocalServer.hpp */,
+				8EDEC7681CFDCE08008F3A79 /* ServerCommands.h */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -554,6 +561,7 @@
 				8E7F37891CE6248800EF1B83 /* SlitherRenderUnit.cpp in Sources */,
 				8E3F557C1CC4E7B900EC809D /* Slither.cpp in Sources */,
 				8E7F37861CE60C5600EF1B83 /* SlitherRender.cpp in Sources */,
+				8EDEC7671CFDCDEA008F3A79 /* LocalServer.cpp in Sources */,
 				8E1A3F9B1CC4FC52003281FE /* easywsclient.cpp in Sources */,
 				8E3A9C141CE45166008AA14F /* Tests.cpp in Sources */,
 				8ED2729F1CEA0398008B4695 /* SlitherTouchController.cpp in Sources */,

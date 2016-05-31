@@ -16,7 +16,7 @@ GameSession::GameSession(cocos2d::Layer* gameLayer,cocos2d::Camera* camera):slit
 {
     _gameLayer = gameLayer;
     _camera = camera;
-    server = new Server();
+    server = new LocalServer();
     server->commandCallBack = [&](ServerCommand command,json obj){
         processServerResponse(command,obj);
     };

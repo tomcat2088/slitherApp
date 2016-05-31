@@ -10,7 +10,7 @@
 #define GameSession_hpp
 
 #include "Slither.hpp"
-#include "Server.hpp"
+#include "LocalServer.hpp"
 #include "json.hpp"
 
 class GameSession
@@ -23,7 +23,7 @@ public:
     
     void update(double deltaTime);
 private:
-    Server* server;
+    LocalServer* server;
     cocos2d::Layer* _gameLayer;
     cocos2d::Camera* _camera;
     void processServerResponse(ServerCommand command,nlohmann::json obj);

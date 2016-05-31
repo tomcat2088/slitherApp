@@ -17,6 +17,7 @@ public:
     
     void moveTo(cocos2d::Vec2 pos,double duration);
     void update(double deltaTime);
+    void setOriginPosition(cocos2d::Vec2 pos);
     
     CREATE_FUNC(SlitherRenderUnit);
 private:

@@ -26,30 +26,34 @@ SlitherRender::~SlitherRender()
 
 void SlitherRender::syncNodes()
 {
-    //if(_nodes.size() != _slither->points.size())
+    if(_nodes.size() < _slither->points.size())
     {
-        for(int i=(int)_slither->points.size() - 1;i >= 0;i--)
+        long sub = _slither->points.size() - _nodes.size();
+        long nodes_size = _nodes.size();
+        for(long left = sub - 1;left >= 0 ;left -- )
         {
-            Vector2 pos = _slither->points[i];
+            Vector2 pos = _slither->points[left + nodes_size];
             SlitherRenderUnit* node = NULL;
-            if(i >= 0 && i < _nodes.size())
-            {
-                node = dynamic_cast<SlitherRenderUnit*>(_nodes.at(i));
-            }
-            else
-            {
-                node = dynamic_cast<SlitherRenderUnit*>(SlitherRenderUnit::create());
-                node->setContentSize(cocos2d::Size(_slither->width,_slither->width));
-                node->setPosition(Vec2(pos.x, pos.y));
-                _nodes.insert(0, node);
-            }
+            node = dynamic_cast<SlitherRenderUnit*>(SlitherRenderUnit::create());
+            node->setContentSize(cocos2d::Size(_slither->width,_slither->width));
+            node->setOriginPosition(Vec2(pos.x, pos.y));
+            _nodes.insert(0, node);
             
             if(node->getParent() == NULL && _attachedLayer)
             {
                 _attachedLayer->addChild(node);
             }
-            node->moveTo(Vec2(pos.x, pos.y),_slither->updateInterval);
         }
+    }
+    for(int i=(int)_slither->points.size() - 1;i >= 0;i--)
+    {
+        Vector2 pos = _slither->points[i];
+        SlitherRenderUnit* node = NULL;
+        if(i >= 0 && i < _nodes.size())
+        {
+            node = dynamic_cast<SlitherRenderUnit*>(_nodes.at(_slither->points.size() - 1 - i));
+        }
+        node->moveTo(Vec2(pos.x, pos.y),0);//_slither->updateInterval);
     }
 }
 
@@ -62,12 +66,15 @@ void SlitherRender::update(double deltaTime)
         
         if(i < _nodes.size() - 1)
         {
-            Vec2 pt1 = _nodes.at(i + 1)->getPosition();
-            Vec2 pt2 = _nodes.at(i)->getPosition();
+            Vec2 pt1 = _nodes.at(i)->getPosition();
+            Vec2 pt2 = _nodes.at(i + 1)->getPosition();
             Vector2 direciton = Vector2(pt1.x,pt1.y).sub(Vector2(pt2.x,pt2.y));
             node->setRotation(Vector2::directionToDegree(direciton));
         }
-        _nodes.at(_nodes.size() - 1)->setRotation(Vector2::directionToDegree(_slither->direction));
+        else
+        {
+            _nodes.at(_nodes.size() - 1)->setRotation(Vector2::directionToDegree(_slither->direction));
+        }
     }
 }
 
